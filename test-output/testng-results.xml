@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="8965" started-at="2020-01-27T12:00:05Z" finished-at="2020-01-27T12:00:14Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="8965" started-at="2020-01-27T12:00:05Z" finished-at="2020-01-27T12:00:14Z">
+      <class name="WindowsAndAlerts.AlertsDemo">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:WindowsAndAlerts.AlertsDemo@6093dd95]" name="beforeMethod" is-config="true" duration-ms="4929" started-at="2020-01-27T12:00:05Z" finished-at="2020-01-27T12:00:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="alertDemo1()[pri:0, instance:WindowsAndAlerts.AlertsDemo@6093dd95]" name="alertDemo1" duration-ms="3975" started-at="2020-01-27T12:00:10Z" finished-at="2020-01-27T12:00:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- alertDemo1 -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:WindowsAndAlerts.AlertsDemo@6093dd95]" name="afterMethod" is-config="true" duration-ms="1" started-at="2020-01-27T12:00:14Z" finished-at="2020-01-27T12:00:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- WindowsAndAlerts.AlertsDemo -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
