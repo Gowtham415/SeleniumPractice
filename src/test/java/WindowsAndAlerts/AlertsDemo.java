@@ -34,7 +34,7 @@ public class AlertsDemo {
 	  driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='cusid']"))).sendKeys("68798");
 	  driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='submit']"))).click();	 	  
 	  driver.switchTo().alert().accept();
-	  driver.switchTo().alert().accept();
+	  driver.switchTo().alert().accept();// Two alerts came
   }
   
   
