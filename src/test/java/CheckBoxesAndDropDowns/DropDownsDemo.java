@@ -21,7 +21,6 @@ public class DropDownsDemo {
 	protected WebDriverWait driverWait;
 	public String baseURL = "http://www.peachpit.com/";
 	public Actions action;
-	
 	public String practiceTestURl = "https://learn.letskodeit.com/p/practice";
 
   @BeforeMethod
@@ -36,11 +35,12 @@ public class DropDownsDemo {
   //With Select
   @Test
   public void dropDownTestSelect() {
+	  driver.manage().deleteAllCookies();
 	  driver.get(practiceTestURl);
 	  WebElement selectElement = driver.findElement(By.id("carselect"));
 	  Select options = new Select(selectElement);
 	  for(WebElement e:options.getAllSelectedOptions()) {
-		  System.out.println(e.getAttribute("value"));
+		  //System.out.println(e.getAttribute("value"));
 		  if(e.getAttribute("value").equals("bmw")) {
 			 options.selectByValue("bmw");
 			 Assert.assertTrue(true);

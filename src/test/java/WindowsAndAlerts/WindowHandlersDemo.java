@@ -3,6 +3,7 @@ package WindowsAndAlerts;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
+import java.time.Duration;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -25,23 +26,22 @@ public class WindowHandlersDemo {
 	public Actions action;
 	public JavascriptExecutor jsExec;
 
-	@SuppressWarnings("deprecation")
 	@BeforeMethod
 	public void beforeMethod() {
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver, 10);
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		action = new Actions(driver);
 		jsExec = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
 	}
+	
 	// SwitchTo will work if there existing multiple windows
 	// NavitageTo will open the URL in the window
 
-	@Test()
+	@Test(enabled = true)
 	public void myBookmarksTest() {
 		driver.get(myBookmarks);
-
 		String parentWindow = driver.getWindowHandle();
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='CPMS1']"))).click();
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='TestRail']"))).click();
@@ -116,9 +116,6 @@ public class WindowHandlersDemo {
 		driver.get(baseURl);
 		// SwitchTo will work if there existing windows
 		// NavitageTo will open the URL in the window
-		driver.switchTo().window("https://google.com/");
-		driver.switchTo().window("https://facebook.com/");
-		driver.switchTo().window("https://www.sbdbforums.com/");
 
 		Set<String> windows = driver.getWindowHandles();
 

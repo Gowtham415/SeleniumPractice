@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="WindowsAndAlerts.AlertsDemo">
+      <class name="AutoITPractice.AutoItDemo">
         <methods>
           <include name="afterMethod"/>
-          <include name="alertDemo1"/>
+          <include name="autoITdemo"/>
           <include name="beforeMethod"/>
         </methods>
-      </class> <!-- WindowsAndAlerts.AlertsDemo -->
+      </class> <!-- AutoITPractice.AutoItDemo -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

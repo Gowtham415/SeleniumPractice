@@ -1,25 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="8965" started-at="2020-01-27T12:00:05Z" finished-at="2020-01-27T12:00:14Z">
+  <suite name="Default suite" duration-ms="110109" started-at="2020-02-21T18:26:36Z" finished-at="2020-02-21T18:28:26Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="8965" started-at="2020-01-27T12:00:05Z" finished-at="2020-01-27T12:00:14Z">
-      <class name="WindowsAndAlerts.AlertsDemo">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:WindowsAndAlerts.AlertsDemo@6093dd95]" name="beforeMethod" is-config="true" duration-ms="4929" started-at="2020-01-27T12:00:05Z" finished-at="2020-01-27T12:00:10Z">
+    <test name="Default test" duration-ms="110109" started-at="2020-02-21T18:26:36Z" finished-at="2020-02-21T18:28:26Z">
+      <class name="AutoITPractice.AutoItDemo">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:AutoITPractice.AutoItDemo@6093dd95]" name="beforeMethod" is-config="true" duration-ms="10566" started-at="2020-02-21T18:26:36Z" finished-at="2020-02-21T18:26:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="alertDemo1()[pri:0, instance:WindowsAndAlerts.AlertsDemo@6093dd95]" name="alertDemo1" duration-ms="3975" started-at="2020-01-27T12:00:10Z" finished-at="2020-01-27T12:00:14Z">
+        <test-method status="PASS" signature="autoITdemo()[pri:0, instance:AutoITPractice.AutoItDemo@6093dd95]" name="autoITdemo" duration-ms="25670" started-at="2020-02-21T18:26:47Z" finished-at="2020-02-21T18:27:13Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- alertDemo1 -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:WindowsAndAlerts.AlertsDemo@6093dd95]" name="afterMethod" is-config="true" duration-ms="1" started-at="2020-01-27T12:00:14Z" finished-at="2020-01-27T12:00:14Z">
+        </test-method> <!-- autoITdemo -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:AutoITPractice.AutoItDemo@6093dd95]" name="afterMethod" is-config="true" duration-ms="1159" started-at="2020-02-21T18:27:13Z" finished-at="2020-02-21T18:27:14Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-      </class> <!-- WindowsAndAlerts.AlertsDemo -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:AutoITPractice.AutoItDemo@6093dd95]" name="beforeMethod" is-config="true" duration-ms="9386" started-at="2020-02-21T18:27:14Z" finished-at="2020-02-21T18:27:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="autoITdemo()[pri:0, instance:AutoITPractice.AutoItDemo@6093dd95]" name="autoITdemo" duration-ms="25335" started-at="2020-02-21T18:27:23Z" finished-at="2020-02-21T18:27:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- autoITdemo -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:AutoITPractice.AutoItDemo@6093dd95]" name="afterMethod" is-config="true" duration-ms="1128" started-at="2020-02-21T18:27:48Z" finished-at="2020-02-21T18:27:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:AutoITPractice.AutoItDemo@6093dd95]" name="beforeMethod" is-config="true" duration-ms="9385" started-at="2020-02-21T18:27:50Z" finished-at="2020-02-21T18:27:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="autoITdemo()[pri:0, instance:AutoITPractice.AutoItDemo@6093dd95]" name="autoITdemo" duration-ms="26280" started-at="2020-02-21T18:27:59Z" finished-at="2020-02-21T18:28:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- autoITdemo -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:AutoITPractice.AutoItDemo@6093dd95]" name="afterMethod" is-config="true" duration-ms="1165" started-at="2020-02-21T18:28:25Z" finished-at="2020-02-21T18:28:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- AutoITPractice.AutoItDemo -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -2,6 +2,9 @@ package WindowsAndAlerts;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
+
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +25,7 @@ public class AlertsDemo {
   public void beforeMethod() { 
 	  	System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver, 10);
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		action = new Actions(driver);
 		jsExec = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
