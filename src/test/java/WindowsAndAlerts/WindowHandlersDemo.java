@@ -39,10 +39,11 @@ public class WindowHandlersDemo {
 	// SwitchTo will work if there existing multiple windows
 	// NavitageTo will open the URL in the window
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void myBookmarksTest() {
 		driver.get(myBookmarks);
 		String parentWindow = driver.getWindowHandle();
+		
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='CPMS1']"))).click();
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='TestRail']"))).click();
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='TL 2.0 Confluence']")))
@@ -67,7 +68,7 @@ public class WindowHandlersDemo {
 
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TestDemo() throws InterruptedException {
 		driver.get(baseURl);
 		String mainWindow = driver.getWindowHandle();
@@ -89,9 +90,7 @@ public class WindowHandlersDemo {
 		jsExec.executeScript("arguments[0].scrollIntoView(true);", element2);
 		// action.moveToElement(element3).build().perform();
 
-		System.out.println("Current window:" + driver.getWindowHandle());
 		action.click(element1).build().perform();
-		System.out.println("Current window:" + driver.getWindowHandle());
 		jsExec.executeScript("window.scrollBy(0,-100)");
 		action.click(element2).build().perform();
 		// action.click(element3).build().perform();

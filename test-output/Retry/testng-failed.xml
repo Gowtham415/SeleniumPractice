@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="4" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [Retry]" parallel="tests">
+  <listeners>
+    <listener class-name="eg.ext.listeners.ReporterListener"/>
+  </listeners>
   <test thread-count="4" verbose="3" name="Firefox Test(failed)" parallel="tests">
     <parameter name="Browser" value="Firefox"/>
     <classes>
