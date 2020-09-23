@@ -7,6 +7,8 @@ import org.testng.IReporter;
 import org.testng.ISuite;
 import org.testng.ISuiteResult;
 import org.testng.ITestContext;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import org.testng.xml.XmlSuite;
 
 public class ReporterListener implements IReporter {
@@ -26,5 +28,4 @@ public class ReporterListener implements IReporter {
 		}
 
 	}
-
 }

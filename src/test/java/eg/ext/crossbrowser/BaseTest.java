@@ -10,6 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 
 public class BaseTest {
@@ -24,12 +25,13 @@ public class BaseTest {
 		if (browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 			driver = new ChromeDriver();
-			driverWait =  new WebDriverWait(driver,Duration.ofSeconds(15));
+			driverWait =  new WebDriverWait(driver,15);
 		} else if (browser.equalsIgnoreCase("Firefox")) {
 			System.setProperty("webdriver.gecko.driver", "D:\\Softwares\\geckodriver-v0.26.0-win64\\geckodriver.exe");
 			driver = new FirefoxDriver();
-			driverWait =  new WebDriverWait(driver,Duration.ofSeconds(15));
+			driverWait = new WebDriverWait(driver,15);
 		}
+//		driver.navigate().to(url);
 	}
 
 	@BeforeMethod

@@ -29,7 +29,7 @@ public class ActionsDemo {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		action = new Actions(driver);
-		driverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		driverWait = new WebDriverWait(driver, 15);
 	}
 
 	@Test(enabled = false)
@@ -59,8 +59,8 @@ public class ActionsDemo {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='slider']")));
 		Actions action = new Actions(driver);
 		int xLoc = slider.getLocation().getX();// TO get the Current X axis position
-		int target = slider.getSize().getWidth();
-		action.dragAndDropBy(slider, target, 0).build().perform();
+		int width = slider.getSize().getWidth();
+		action.dragAndDropBy(slider, width, 0).build().perform();
 
 	}
 

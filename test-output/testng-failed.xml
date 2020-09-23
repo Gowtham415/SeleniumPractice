@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="4" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [Retry]" parallel="tests">
-  <listeners>
-    <listener class-name="eg.ext.listeners.ReporterListener"/>
-  </listeners>
-  <test thread-count="4" verbose="3" name="Firefox Test(failed)" parallel="tests">
-    <parameter name="Browser" value="Firefox"/>
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="eg.ext.crossbrowser.FirefoxBrowserTest">
+      <class name="com.tpm.TPMProjectTest">
         <methods>
-          <include name="beforeMethod"/>
-          <include name="beforeTest"/>
           <include name="afterMethod"/>
-          <include name="afterTest"/>
-          <include name="test01"/>
+          <include name="beforeMethod"/>
+          <include name="Test1"/>
         </methods>
-      </class> <!-- eg.ext.crossbrowser.FirefoxBrowserTest -->
+      </class> <!-- com.tpm.TPMProjectTest -->
     </classes>
-  </test> <!-- Firefox Test(failed) -->
-</suite> <!-- Failed suite [Retry] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

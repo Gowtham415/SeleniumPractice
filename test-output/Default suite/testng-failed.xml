@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="AutoITPractice.AutoItDemo">
+      <class name="com.tpm.TPMProjectTest">
         <methods>
           <include name="afterMethod"/>
-          <include name="autoITdemo"/>
           <include name="beforeMethod"/>
+          <include name="Test1"/>
         </methods>
-      </class> <!-- AutoITPractice.AutoItDemo -->
+      </class> <!-- com.tpm.TPMProjectTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -30,10 +30,10 @@ public class CheckBoxes {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		action = new Actions(driver);
-		driverWait =  new WebDriverWait(driver,Duration.ofSeconds(15));
+		driverWait =  new WebDriverWait(driver,15);
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups = {"SMOKE"})
 	public void checkBoxTest() {
 		driver.get(baseURl);
 		List<WebElement> chkBoxes = driver.findElements(By.xpath("//input[@name='color']"));
@@ -54,7 +54,6 @@ public class CheckBoxes {
 				}
 			}
 		}
-		
 	}
 	
 	@Test(priority = 1)

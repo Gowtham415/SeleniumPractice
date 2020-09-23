@@ -27,11 +27,10 @@ public class JSExecutorDemo {
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
 		JSdriver = (JavascriptExecutor)driver;
-		driverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		driverWait = new WebDriverWait(driver,15);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
-		driver.get(baseURL);
-		
+		driver.get(baseURL);		
 	}
 
 	@Test

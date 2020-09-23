@@ -31,7 +31,7 @@ public class AutoItDemo {
 		driver.manage().window().maximize();
 		action = new Actions(driver);
 		jexecute = (JavascriptExecutor)driver;
-		driverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		driverWait = new WebDriverWait(driver,15);
 	}
 
 	@Test(invocationCount = 3)

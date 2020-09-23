@@ -26,7 +26,7 @@ public class UEFA_ChampionsLeague {
 
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		driverWait = new WebDriverWait(driver,15);
 		driver.manage().window().maximize();
 	}
 

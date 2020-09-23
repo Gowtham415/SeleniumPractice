@@ -6,6 +6,11 @@
 </listeners>
 	<test name="Chrome Test" enabled="true">
 		<parameter name="Browser" value="Chrome"></parameter>
+		<groups>
+			<run>
+				<include>SMOKE</include>
+			</run>
+		</groups>
 		<classes>
 			<class name="eg.ext.crossbrowser.ChromeBrowserTest"/>
 		</classes>

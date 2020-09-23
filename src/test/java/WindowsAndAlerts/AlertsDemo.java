@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +26,7 @@ public class AlertsDemo {
   public void beforeMethod() { 
 	  	System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		driverWait = new WebDriverWait(driver,15);
 		action = new Actions(driver);
 		jsExec = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
@@ -36,10 +37,10 @@ public class AlertsDemo {
 	  driver.get(alertSite);
 	  driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='cusid']"))).sendKeys("68798");
 	  driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='submit']"))).click();	 	  
-	  driver.switchTo().alert().accept();
+	  Alert alert = driver.switchTo().alert();
+	  alert.accept();
 	  driver.switchTo().alert().accept();// Two alerts came
   }
-  
   
   @AfterMethod
   public void afterMethod() {

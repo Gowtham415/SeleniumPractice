@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -30,7 +31,7 @@ public class WindowHandlersDemo {
 	public void beforeMethod() {
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		driverWait = new WebDriverWait(driver,15);
 		action = new Actions(driver);
 		jsExec = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
@@ -43,6 +44,7 @@ public class WindowHandlersDemo {
 	public void myBookmarksTest() {
 		driver.get(myBookmarks);
 		String parentWindow = driver.getWindowHandle();
+		
 		
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='CPMS1']"))).click();
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='TestRail']"))).click();
@@ -68,7 +70,7 @@ public class WindowHandlersDemo {
 
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TestDemo() throws InterruptedException {
 		driver.get(baseURl);
 		String mainWindow = driver.getWindowHandle();
@@ -123,10 +125,25 @@ public class WindowHandlersDemo {
 		}
 
 	}
+	
+//	@Test(enabled = true)
+//	public void newWindowTest() throws InterruptedException {
+//		driver.get("https://google.com/");
+//		driver.switchTo().newWindow(WindowType.TAB);
+//		Thread.sleep(1000);
+//		driver.switchTo().newWindow(WindowType.WINDOW);
+//		Thread.sleep(1000);
+//		Set<String> handles = driver.getWindowHandles();
+//		
+//		System.out.println(handles.size());
+//		
+//		System.out.println(driver.getCurrentUrl());
+//		
+//	}
 
 	@AfterMethod
 	public void afterMethod() {
-		driver.quit();
+		//driver.quit();
 	}
 
 }

@@ -1,4 +1,4 @@
-package eg.ext.listeners;
+package cookiesAndResizingWindows;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
@@ -17,7 +17,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 
-public class practice1 {
+public class CookiesAndSetSizeDemo {
 
 	WebDriver driver;
 	JavascriptExecutor js;
@@ -27,8 +27,7 @@ public class practice1 {
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println(chromeDriverPath);
-		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-		
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);	
 		// To Remove Info tab "Chrome is controlled by Automated Software "
 		ChromeOptions options = new ChromeOptions();
 		options.setExperimentalOption("useAutomationExtension", false);
