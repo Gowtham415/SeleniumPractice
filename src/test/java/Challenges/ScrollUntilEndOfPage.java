@@ -27,12 +27,10 @@ public class ScrollUntilEndOfPage {
 		// driver.close();
 		driver.findElement(By.xpath("//span/a[text()='Sign In']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email"))).sendKeys("gowthampage@gmail.com");
-		driver.findElement(By.id("ap_password")).sendKeys("Movies@2020");
+		driver.findElement(By.id("ap_password")).sendKeys("10je1A0415@416");
 		driver.findElement(By.id("signInSubmit")).click();
 		jsDriver = (JavascriptExecutor) driver;
 		jsDriver.executeScript("window.scrollBy(0,8000);");
-		// WebElement moviesBylang= driver.findElement(By.xpath("//h2[text()='Movies by
-		// language']//ancestor::div[contains(@class,'tst-faceted')]"));
 		WebElement moviesBylang = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//h2[text()='Movies by language']//ancestor::div[contains(@class,'tst-faceted')]")));
 		// jsDriver.executeScript("arguments[0].scrollIntoView();", moviesBylang);
