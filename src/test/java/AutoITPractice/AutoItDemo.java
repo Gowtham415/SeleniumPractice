@@ -45,7 +45,6 @@ public class AutoItDemo {
 		action.moveToElement(e).click().build().perform();
 		WebElement e1 = driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Draw 1 (D01)']")));
 		action.moveToElement(e1).click().build().perform();
-		
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Attachments')]"))).click();
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add...']//ancestor::button"))).click();
 		UtilityClass.sleep(2);
@@ -56,9 +55,7 @@ public class AutoItDemo {
 		UtilityClass.sleep(1);
 		action.moveToElement(driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='ojChoiceId_addDocumentDraw']")))).click().build().perform();
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='oj-listbox-results-addDocumentDraw']//div[text()='1']"))).click();
-		
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[starts-with(@id,'attachmentDescriptionInput')]"))).sendKeys("SampleTest");
-		 
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@id,'filePickerInput')]"))).click();
 		try {
 			Runtime.getRuntime().exec("D:\\Project15\\AutoITScripts\\attachmentsPage.exe");
