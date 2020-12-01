@@ -19,7 +19,6 @@ public class ScrollUntilEndOfPage {
 
 	public static void main(String[] args) {
 		WebDriverManager.chromedriver().setup();
-//		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
 		driver = new ChromeDriver();
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		driver.manage().window().maximize();
@@ -47,15 +46,14 @@ public class ScrollUntilEndOfPage {
 		}
 		scrollToBottomOfPage();
 
-		List<WebElement> movies = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
-				By.xpath("//div[contains(@class,'search-grid')]//div[contains(@class,'mustache')]//a")));
-		System.out.println("Total number of Movies: " + movies.size());
-		for (WebElement e : movies) {
-			String movie = e.getText();
-			System.out.println(movie);
+		List<WebElement> movieElements = driver.findElements(By.xpath("//*[@id='av-search']/div[2]//div//h1"));
+		System.out.println("Total number of Movies: " + movieElements.size());
+		for (WebElement movie : movieElements) {
+			String movieName = movie.getAttribute("innerHTML");
+			System.out.println(movieName);
 		}
 		
-		driver.close();
+		driver.quit();
 	}
 	
 	// To Scroll to the bottom of a dynamic Web page
