@@ -1,16 +1,19 @@
 package xpathpractice;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.io.File;
+import java.io.IOException;
 
 public class XpathLocatorsDemo {
 	protected WebDriver driver;
@@ -37,16 +40,26 @@ public class XpathLocatorsDemo {
 				.sendKeys("Hyderabad");
 		driver.findElement(By.xpath("//div[@id='location-field-destination-menu']//ul//li[1]/button")).click();
 		driver.findElement(By.xpath("//input[@id='d1']/following-sibling::button[1]")).click();
-		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'December')]/following::table[1]//td//button[@data-day='5']"))).click();
+		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'December')]/following::table[1]//td//button[@data-day='10']"))).click();
 		driver.findElement(By.xpath("//span[text()='Done']//ancestor::button")).click();
 		driver.findElement(By.xpath("//input[@id='d2']/following-sibling::button[1]")).click();
-		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'December')]/following::table[1]//td//button[@data-day='5']"))).click();
+		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'December')]/following::table[1]//td//button[@data-day='15']"))).click();
 		driver.findElement(By.xpath("//span[text()='Done']//ancestor::button")).click();
 		driver.findElement(By.xpath("//button[text()='Search']")).click();
 	}
 
-	@AfterMethod
-	public void afterMethod() {
+	@AfterMethod()
+	public void afterMethod(ITestResult result){
+		if(ITestResult.FAILURE==result.getStatus()){
+			TakesScreenshot screenshot = (TakesScreenshot) driver;
+			File target = screenshot.getScreenshotAs(OutputType.FILE);
+			try {
+				FileUtils.copyFile(target,new File("D:\\screenshot.jpeg"));
+			} catch (IOException e) {
+				System.err.println("Destination File Path is Incorrect");
+				e.printStackTrace();
+			}
+		}
 		driver.quit();
 	}
 
