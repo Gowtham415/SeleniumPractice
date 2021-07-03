@@ -15,17 +15,19 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class DropDownsDemo {
 
 	protected WebDriver driver;
 	protected WebDriverWait driverWait;
 	public String baseURL = "http://www.peachpit.com/";
 	public Actions action;
-	public String practiceTestURl = "https://learn.letskodeit.com/p/practice";
+	public String practiceTestURl = "https://courses.letskodeit.com/practice";
 
   @BeforeMethod
   public void setUp() {
-	  	System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
+	  	WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		action = new Actions(driver);
@@ -38,22 +40,26 @@ public class DropDownsDemo {
 	  driver.manage().deleteAllCookies();
 	  driver.get(practiceTestURl);
 	  WebElement selectElement = driver.findElement(By.id("carselect"));
+	  
 	  Select options = new Select(selectElement);
-	  for(WebElement e:options.getAllSelectedOptions()) {
-		  //System.out.println(e.getAttribute("value"));
-		  if(e.getAttribute("value").equals("bmw")) {
-			 options.selectByValue("bmw");
-			 Assert.assertTrue(true);
-		  }else {
-			  System.out.println("Element is not in the drop down");
-			  Assert.assertTrue(false);
-		  }
-	  }
+	  options.getOptions().stream().map(x->x.getText()).distinct().sorted().forEach(System.out::println);
+	  
+	  
+//	  for(WebElement e:options.getAllSelectedOptions()) {
+//		  //System.out.println(e.getAttribute("value"));
+//		  if(e.getAttribute("value").equals("bmw")) {
+//			 options.selectByValue("bmw");
+//			 Assert.assertTrue(true);
+//		  }else {
+//			  System.out.println("Element is not in the drop down");
+//			  Assert.assertTrue(false);
+//		  }
+//	  }
   }
   
   
   //Without SELECT
-  @Test
+  @Test(enabled = false)
   public void dropDowntest1() {
 	  driver.get(baseURL);
 	  WebElement topics= driver.findElement(By.xpath("//a[text()='Topics']"));

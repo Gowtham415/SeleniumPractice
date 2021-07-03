@@ -1,16 +1,20 @@
 package eg.ext.crossbrowser;
 
 import java.time.Duration;
+import java.util.EnumMap;
+import java.util.function.Supplier;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -21,19 +25,10 @@ public class BaseTest {
 	protected WebDriverWait driverWait;
 	public String baseURl = "https://www.expedia.co.in/";
 
-	@Parameters({ "Browser" })
 	@BeforeTest
-	public void beforeTest(String browser) {
-		if (browser.equalsIgnoreCase("Chrome")) {
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
-			driverWait =  new WebDriverWait(driver,15);
-		} else if (browser.equalsIgnoreCase("Firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
-			driverWait = new WebDriverWait(driver,15);
-		}
-//		driver.navigate().to(url);
+	public void beforeTest() {
+		WebDriverManager.chromedriver().setup();
+		driver = BrowserBuilder.build(BrowserType.CHROME);
 	}
 
 	@BeforeMethod
@@ -54,6 +49,26 @@ public class BaseTest {
 			driver.quit();
 		} catch (Exception e) {
 			System.out.println("Driver already closed!");
+		}
+	}
+	
+	
+	static class BrowserBuilder{
+		private static Supplier<WebDriver> chromeDriver = ()->new ChromeDriver();
+		private static Supplier<WebDriver> firefoxDriver = ()->new FirefoxDriver();
+		private static Supplier<WebDriver> safariDriver = ()->new SafariDriver();
+		
+		private static EnumMap<BrowserType, Supplier<WebDriver>> map = new EnumMap<BrowserType, Supplier<WebDriver>>(BrowserType.class);
+		
+		static {
+			map.put(BrowserType.CHROME, chromeDriver);
+			map.put(BrowserType.FIREFOX, firefoxDriver);
+			map.put(BrowserType.SAFARI, safariDriver);
+		}
+		
+		public static WebDriver build(BrowserType browserType) {
+			return map.get(browserType).get();
+			
 		}
 	}
 

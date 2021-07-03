@@ -1,6 +1,9 @@
 package ActionsAndJSExecutor;
 
 import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
@@ -24,7 +27,7 @@ public class JSExecutorDemo {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		JSdriver = (JavascriptExecutor)driver;
 		driverWait = new WebDriverWait(driver,15);

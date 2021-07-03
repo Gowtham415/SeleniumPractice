@@ -15,6 +15,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class UEFA_ChampionsLeague {
 	protected WebDriver driver;
 	protected WebDriverWait driverWait;
@@ -24,7 +26,7 @@ public class UEFA_ChampionsLeague {
 	@BeforeMethod
 	public void beforeMethod() {
 
-		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driverWait = new WebDriverWait(driver,15);
 		driver.manage().window().maximize();
@@ -44,18 +46,12 @@ public class UEFA_ChampionsLeague {
 					.findElements(By.xpath("//caption[contains(text(),'Performances in the')]//parent::table//tbody//tr["
 							+ (i + 1) + "]//td[3]/a"));
 			
-			for(int j=0;j<yearsEle.size();j++) {
-				if(yearsEle.size()>0) {
-					String year = yearsEle.get(j).getText();
-					uclWinners.put(Long.parseLong(year.trim()),teamName.trim());
-				}			
-			}		
+			if(yearsEle.size()>0) {
+				yearsEle.stream().map(s->s.getText().trim()).forEach(s->uclWinners.put(Long.parseLong(s), teamName));
+			}
 		}
 		
-		
-		for(Map.Entry<Long, String> entry : uclWinners.entrySet()) {
-			System.out.println(entry.getKey()+" : "+entry.getValue());
-		}
+		uclWinners.forEach((k,v)->System.out.println(k+" : "+v));
 
 	}
 
