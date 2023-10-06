@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -26,11 +27,12 @@ public class CheckBoxes {
 	
 	@BeforeMethod
 	public void beforeMethod() {
-		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
-		driver = new ChromeDriver();
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBrowserVersion("117");
+		driver = new ChromeDriver(chromeOptions);
 		driver.manage().window().maximize();
 		action = new Actions(driver);
-		driverWait =  new WebDriverWait(driver,15);
+		driverWait = new WebDriverWait(driver,Duration.ofSeconds(15));
 	}
 
 	@Test(priority = 1,groups = {"SMOKE"})

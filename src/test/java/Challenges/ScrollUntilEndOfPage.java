@@ -1,5 +1,6 @@
 package Challenges;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -7,10 +8,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ScrollUntilEndOfPage {
 	
@@ -18,9 +18,10 @@ public class ScrollUntilEndOfPage {
 	public static JavascriptExecutor jsDriver;
 
 	public static void main(String[] args) {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		WebDriverWait wait = new WebDriverWait(driver, 15);
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBrowserVersion("117");
+		driver = new ChromeDriver(chromeOptions);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		driver.manage().window().maximize();
 		driver.get("https://www.primevideo.com/");
 		// driver.close();

@@ -14,6 +14,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.Collections;
 
 /*        start-maximized: Opens Chrome in maximize mode
@@ -33,15 +34,13 @@ public class ChromeOptionsPractice {
     @BeforeMethod
     public void setUp(){
         WebDriverManager.chromedriver().setup();
-      /*  DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);*/
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,UnexpectedAlertBehaviour.ACCEPT);
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBrowserVersion("117");
         chromeOptions.addArguments("--incognito");
         chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         chromeOptions.setExperimentalOption("useAutomationExtension", false);
         driver = new ChromeDriver(chromeOptions);
-        driverWait = new WebDriverWait(driver, 10);
+        driverWait = new WebDriverWait(driver,Duration.ofSeconds(15));
         jsDriver = (JavascriptExecutor) driver;
         driver.manage().window().maximize();
         driver.get(baseURl);

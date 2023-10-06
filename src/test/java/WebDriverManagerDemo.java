@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.commons.collections4.bag.SynchronizedSortedBag;
@@ -22,7 +23,7 @@ public class WebDriverManagerDemo {
 		WebDriverManager.chromedriver().setup();
 //		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
 		driver = new ChromeDriver();
-		WebDriverWait wait = new WebDriverWait(driver, 15);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
 		driver.manage().window().maximize();
 		driver.get("https://www.primevideo.com/");
 		// driver.close();

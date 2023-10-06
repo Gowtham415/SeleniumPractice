@@ -31,7 +31,7 @@ public class WindowHandlersDemo {
 	public void beforeMethod() {
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver,15);
+		driverWait = new WebDriverWait(driver,Duration.ofSeconds(15));
 		action = new Actions(driver);
 		jsExec = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();

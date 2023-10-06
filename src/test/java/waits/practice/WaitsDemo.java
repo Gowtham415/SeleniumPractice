@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -30,13 +31,14 @@ public class WaitsDemo {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver, 15);
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBrowserVersion("117");
+		driver = new ChromeDriver(chromeOptions);
+		driverWait = new WebDriverWait(driver,Duration.ofSeconds(15));
 		fluentWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(10)).ignoring(NoSuchElementException.class);
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 	}
 

@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,8 +15,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DropDownsDemo {
 
@@ -27,11 +26,12 @@ public class DropDownsDemo {
 
   @BeforeMethod
   public void setUp() {
-	  	WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBrowserVersion("117");
+		driver = new ChromeDriver(chromeOptions);
 		driver.manage().window().maximize();
 		action = new Actions(driver);
-		driverWait = new WebDriverWait(driver,15);
+		driverWait = new WebDriverWait(driver,Duration.ofSeconds(15));
   }
   
   //With Select
@@ -43,18 +43,6 @@ public class DropDownsDemo {
 	  
 	  Select options = new Select(selectElement);
 	  options.getOptions().stream().map(x->x.getText()).distinct().sorted().forEach(System.out::println);
-	  
-	  
-//	  for(WebElement e:options.getAllSelectedOptions()) {
-//		  //System.out.println(e.getAttribute("value"));
-//		  if(e.getAttribute("value").equals("bmw")) {
-//			 options.selectByValue("bmw");
-//			 Assert.assertTrue(true);
-//		  }else {
-//			  System.out.println("Element is not in the drop down");
-//			  Assert.assertTrue(false);
-//		  }
-//	  }
   }
   
   

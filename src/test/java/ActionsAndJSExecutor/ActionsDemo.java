@@ -5,12 +5,12 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,18 +19,19 @@ import org.testng.annotations.AfterMethod;
 /* Tested by Gowtham Epparla
 */
 public class ActionsDemo {
-	protected WebDriver driver;
-	protected WebDriverWait driverWait;
-	public String baseURl = "https://www.expedia.co.in/";
-	public Actions action;
+	private WebDriver driver;
+	private WebDriverWait driverWait;
+	private String baseURl = "https://www.expedia.co.in/";
+	private Actions action;
 
 	@BeforeMethod
 	public void beforeMethod() {
-		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
-		driver = new ChromeDriver();
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBrowserVersion("117");
+		driver = new ChromeDriver(chromeOptions);
 		driver.manage().window().maximize();
 		action = new Actions(driver);
-		driverWait = new WebDriverWait(driver, 15);
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
 	@Test(enabled = false)
@@ -54,14 +55,18 @@ public class ActionsDemo {
 	}
 
 	@Test(invocationCount = 1)
-	public void sliderDemo() {
+	public void sliderDemo() throws InterruptedException {
 		driver.get("https://demoqa.com/slider/");
 		WebElement slider = driverWait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='slider']")));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@type='range'])[1]")));
 		Actions action = new Actions(driver);
 		int xLoc = slider.getLocation().getX();// TO get the Current X axis position
 		int width = slider.getSize().getWidth();
-		action.dragAndDropBy(slider, width, 0).build().perform();
+		System.out.println("XLoc is : "+xLoc);
+		System.out.println("Width is : "+width);
+		action.dragAndDropBy(slider, 1000, 0).build().perform();
+
+		Thread.sleep(2000);
 
 	}
 

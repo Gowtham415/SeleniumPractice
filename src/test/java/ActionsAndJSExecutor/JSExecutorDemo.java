@@ -1,56 +1,55 @@
 package ActionsAndJSExecutor;
 
-import org.testng.annotations.Test;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-import org.testng.annotations.BeforeMethod;
-
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class JSExecutorDemo {
 	
 	String baseURL ="https://www.amazon.in/";
 	protected WebDriver driver;
-	JavascriptExecutor JSdriver;
+	JavascriptExecutor javaScriptDriver;
 	WebDriverWait driverWait;
 
 	@BeforeMethod
 	public void beforeMethod() {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		JSdriver = (JavascriptExecutor)driver;
-		driverWait = new WebDriverWait(driver,15);
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBrowserVersion("117");
+		driver = new ChromeDriver(chromeOptions);
+		javaScriptDriver = (JavascriptExecutor)driver;
+		driverWait = new WebDriverWait(driver,Duration.ofSeconds(15));
 		driver.manage().window().maximize();
-		driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
 		driver.get(baseURL);		
 	}
 
 	@Test
 	public void JSDemoTest() {
-		JSdriver.executeScript("window.scrollBy(0,5000)"); 
-		JSdriver.executeScript("window.scrollBy(0,-5000)"); 
-		String sText =  JSdriver.executeScript("return document.title;").toString();
+		javaScriptDriver.executeScript("window.scrollBy(0,5000)"); 
+		javaScriptDriver.executeScript("window.scrollBy(0,-5000)"); 
+		Long height = (Long) javaScriptDriver.executeScript("return document.body.scrollHeight");
+		System.out.println("Height of the page : "+height);
+		String sText =  javaScriptDriver.executeScript("return document.title;").toString();
 		System.out.println(sText);
-		String sURL = JSdriver.executeScript("return document.URL;").toString();
+		String sURL = javaScriptDriver.executeScript("return document.URL;").toString();
 		System.out.println(sURL);
 		WebElement element = driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='About Us']")));
-		JSdriver.executeScript("arguments[0].scrollIntoView(true);", element);
+		javaScriptDriver.executeScript("arguments[0].scrollIntoView(true);", element);
 		WebElement searchBox = driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='twotabsearchtextbox']")));
-		JSdriver.executeScript("arguments[0].scrollIntoView(true);", searchBox);
-		JSdriver.executeScript("document.getElementById('twotabsearchtextbox').value='iPhone XR 64GB';");
+		javaScriptDriver.executeScript("arguments[0].scrollIntoView(true);", searchBox);
+		javaScriptDriver.executeScript("document.getElementById('twotabsearchtextbox').value='iPhone XR 64GB';");
 		WebElement serachBtn = driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='nav-search']//input[@type='submit']")));
-		JSdriver.executeScript("arguments[0].click();",serachBtn);
+		javaScriptDriver.executeScript("arguments[0].click();",serachBtn);
 		
 		try {
 			Thread.sleep(3000);
