@@ -1,8 +1,10 @@
 package BrokenLinksandImages;
 
 import java.time.Duration;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -38,8 +40,10 @@ public class BrokenLinksDemo {
 	public void brokenLinksTest() {
 		driver.get(baseURl);
 		List<WebElement> linksElements= driver.findElements(By.xpath("//a"));
-		
-		linksElements.stream()
+		System.out.println("Total links : "+linksElements.size());
+		Set<WebElement> webElementSet = new HashSet<>(linksElements);
+		System.out.println("Total unique links : "+webElementSet.size());
+		webElementSet.stream()
 				.map(e->e.getAttribute("href"))
 				.filter(link -> Objects.nonNull(link))
 				.forEach(this::checkIfURLisWorking);
