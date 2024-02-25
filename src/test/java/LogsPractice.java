@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 
+import java.time.Duration;
+
 public class LogsPractice{
 	protected WebDriver driver;
 	protected WebDriverWait driverWait;
@@ -24,7 +26,7 @@ public class LogsPractice{
 	public void beforeMethod() throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver, 10);
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		jsDriver = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
 		driver.get(baseURl);

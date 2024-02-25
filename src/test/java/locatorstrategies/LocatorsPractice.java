@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 
+import java.time.Duration;
+
 public class LocatorsPractice {
 	
 	protected WebDriver driver;
@@ -18,7 +20,7 @@ public class LocatorsPractice {
 	public void beforeMethod() {
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driverWait =  new WebDriverWait(driver,15);
+		driverWait =  new WebDriverWait(driver, Duration.ofSeconds(10));
 		driver.manage().window().maximize();
 	}
 

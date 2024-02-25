@@ -17,6 +17,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 public class XpathLocatorsDemo {
 	protected WebDriver driver;
@@ -28,7 +29,7 @@ public class XpathLocatorsDemo {
 	public void beforeMethod() throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver, 10);
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		jsDriver = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
 		driver.get(baseURl);

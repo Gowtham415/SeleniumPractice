@@ -21,7 +21,7 @@ public class Adhoc {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(url);
-		wait = new WebDriverWait(driver,15);
+		wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("j_username|input"))).sendKeys("sapintegration");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("j_password|input"))).sendKeys("wert66");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Sign In']//ancestor::button"))).click();

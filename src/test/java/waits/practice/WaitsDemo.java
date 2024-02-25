@@ -32,9 +32,9 @@ public class WaitsDemo {
 	public void beforeMethod() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
-		driverWait = new WebDriverWait(driver, 15);
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		fluentWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(10))
-				.pollingEvery(Duration.ofSeconds(10)).ignoring(NoSuchElementException.class);
+				.pollingEvery(Duration.ofMillis(100)).ignoring(NoSuchElementException.class);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 

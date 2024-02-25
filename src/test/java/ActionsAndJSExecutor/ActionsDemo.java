@@ -1,5 +1,6 @@
 package ActionsAndJSExecutor;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
@@ -26,11 +27,11 @@ public class ActionsDemo {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		action = new Actions(driver);
-		driverWait = new WebDriverWait(driver, 15);
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
 	@Test(enabled = false)

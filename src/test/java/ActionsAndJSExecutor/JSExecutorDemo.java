@@ -30,9 +30,8 @@ public class JSExecutorDemo {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		JSdriver = (JavascriptExecutor)driver;
-		driverWait = new WebDriverWait(driver,15);
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		driver.manage().window().maximize();
-		driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
 		driver.get(baseURL);		
 	}
 
