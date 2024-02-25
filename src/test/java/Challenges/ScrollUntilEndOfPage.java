@@ -1,3 +1,4 @@
+
 package Challenges;
 
 import java.time.Duration;
@@ -77,5 +78,4 @@ public class ScrollUntilEndOfPage {
 		}
 	}
 }
-
 

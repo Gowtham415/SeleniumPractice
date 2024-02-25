@@ -21,7 +21,11 @@ public class Adhoc {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(url);
+<<<<<<< HEAD
 		wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+=======
+		wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+>>>>>>> a9c9b26 (Selenium Upgrade and WebTable)
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("j_username|input"))).sendKeys("sapintegration");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("j_password|input"))).sendKeys("wert66");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Sign In']//ancestor::button"))).click();

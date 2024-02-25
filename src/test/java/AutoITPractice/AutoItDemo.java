@@ -1,3 +1,4 @@
+
 package AutoITPractice;
 
 import java.io.IOException;
@@ -16,7 +17,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 public class AutoItDemo {
 
 	protected WebDriver driver;
@@ -27,13 +27,12 @@ public class AutoItDemo {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		ChromeOptions chromeOptions = new ChromeOptions();
-		chromeOptions.setBrowserVersion("117");
-		driver = new ChromeDriver(chromeOptions);
+		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		action = new Actions(driver);
 		jexecute = (JavascriptExecutor)driver;
-		driverWait = new WebDriverWait(driver,Duration.ofSeconds(15));
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
 	@Test(invocationCount = 3)

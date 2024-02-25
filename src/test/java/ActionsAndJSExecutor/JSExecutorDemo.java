@@ -1,3 +1,4 @@
+
 package ActionsAndJSExecutor;
 
 import java.time.Duration;
@@ -23,9 +24,7 @@ public class JSExecutorDemo {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		ChromeOptions chromeOptions = new ChromeOptions();
-		chromeOptions.setBrowserVersion("117");
-		driver = new ChromeDriver(chromeOptions);
+		driver = new ChromeDriver();
 		javaScriptDriver = (JavascriptExecutor)driver;
 		driverWait = new WebDriverWait(driver,Duration.ofSeconds(15));
 		driver.manage().window().maximize();

@@ -1,3 +1,4 @@
+
 package CheckBoxesAndDropDowns;
 
 import java.time.Duration;
@@ -71,3 +72,4 @@ public class DropDownsDemo {
 	  driver.close();
   }
 }
+

@@ -1,3 +1,4 @@
+
 package locatorstrategies;
 
 import org.testng.annotations.Test;
@@ -44,3 +45,4 @@ public class LocatorsPractice {
 	}
 
 }
+
