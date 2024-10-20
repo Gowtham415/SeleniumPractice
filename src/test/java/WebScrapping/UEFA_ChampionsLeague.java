@@ -1,14 +1,14 @@
 package WebScrapping;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -25,9 +25,9 @@ public class UEFA_ChampionsLeague {
 
 	@BeforeMethod
 	public void beforeMethod() {
-
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless");
+		driver = new ChromeDriver(chromeOptions);
 		driverWait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		driver.manage().window().maximize();
 	}
@@ -45,14 +45,21 @@ public class UEFA_ChampionsLeague {
 			List<WebElement> yearsEle = driver
 					.findElements(By.xpath("//caption[contains(text(),'Performances in the')]//parent::table//tbody//tr["
 							+ (i + 1) + "]//td[3]/a"));
-			
+
 			if(yearsEle.size()>0) {
 				yearsEle.stream().map(s->s.getText().trim()).forEach(s->uclWinners.put(Long.parseLong(s), teamName));
 			}
 		}
-		
+
 		uclWinners.forEach((k,v)->System.out.println(k+" : "+v));
 
+		//Finding numbers of times each team won
+		Map<String, Long> collect = uclWinners.entrySet().stream().collect(Collectors.groupingBy(e->(String)e.getValue(),Collectors.counting()));
+		System.out.println(collect);
+
+		//Finding the team which has won more UCLs
+		Map.Entry<String, Long> stringLongEntry = collect.entrySet().stream().max(Comparator.comparing(e -> e.getValue())).get();
+		System.out.println(stringLongEntry.getKey()+" : "+stringLongEntry.getValue());
 	}
 
 	@AfterMethod

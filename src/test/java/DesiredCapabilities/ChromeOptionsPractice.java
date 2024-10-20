@@ -38,6 +38,7 @@ public class ChromeOptionsPractice {
         desiredCapabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);*/
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--incognito");
+        chromeOptions.addArguments("--headless");
         chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         chromeOptions.setExperimentalOption("useAutomationExtension", false);
         driver = new ChromeDriver(chromeOptions);

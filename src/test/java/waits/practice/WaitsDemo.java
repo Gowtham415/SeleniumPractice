@@ -56,6 +56,13 @@ public class WaitsDemo {
 		driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'December')]/following::table[1]//td//button[@data-day='5']"))).click();
 		driver.findElement(By.xpath("//span[text()='Done']//ancestor::button")).click();
 		driver.findElement(By.xpath("//button[text()='Search']")).click();
+
+		//Fluent Wait
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(5))
+				.pollingEvery(Duration.ofMillis(500))//Customized polling
+				.ignoring(NoSuchElementException.class);
+
 	}
 
 	@AfterMethod

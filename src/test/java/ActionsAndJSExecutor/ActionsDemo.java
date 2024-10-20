@@ -1,16 +1,19 @@
 package ActionsAndJSExecutor;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -27,11 +30,13 @@ public class ActionsDemo {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		WebDriverManager.chromedriver().setup();
+//		WebDriverManager.chromedriver().setup();
+//		ChromeOptions chromeOptions = new ChromeOptions();
+//		chromeOptions.addArguments("--headless");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		action = new Actions(driver);
-		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
 	}
 
 	@Test(enabled = false)
@@ -54,20 +59,33 @@ public class ActionsDemo {
 		driver.findElement(By.xpath("//body")).click();
 	}
 
-	@Test(invocationCount = 1)
+	@Test
 	public void sliderDemo() {
 		driver.get("https://demoqa.com/slider/");
+
 		WebElement slider = driverWait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='slider']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='range']")));
 		Actions action = new Actions(driver);
 		int xLoc = slider.getLocation().getX();// TO get the Current X axis position
 		int width = slider.getSize().getWidth();
-		action.dragAndDropBy(slider, width, 0).build().perform();
+		System.out.println("X Axis:"+xLoc+"\nWidth:"+width);
+//		action.clickAndHold(slider).moveByOffset(width,0);
+		action.dragAndDropBy(slider, Integer.parseInt(slider.getAttribute("max")), 0).build().perform();
 
 	}
 
 	@AfterMethod
 	public void afterMethod() {
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File srcFile = ts.getScreenshotAs(OutputType.FILE);
+		LocalDateTime currentTime = LocalDateTime.now();
+		File screenShotFile = new File(System.getProperty("user.dir")+"/screenshots/screenshot"+currentTime+".png");
+		try{
+			FileUtils.copyFile(srcFile,screenShotFile);
+		} catch (IOException e) {
+			System.out.println("Unable to take the screenshot");
+			e.printStackTrace();
+		}
 		driver.close();
 	}
 

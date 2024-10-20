@@ -1,5 +1,6 @@
 package BrokenLinksandImages;
 
+import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
@@ -25,13 +26,10 @@ public class BrokenLinksDemo {
 
 	protected WebDriver driver;
 	protected WebDriverWait driverWait;
-	public String baseURl = "https://www.youtube.com/";
-	String url = "";
-	int respCode;
+	public String baseURl = "https://amazon.in";
 
 	@BeforeMethod
 	public void beforeMethod() {
-		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -42,19 +40,25 @@ public class BrokenLinksDemo {
 		driver.get(baseURl);
 		List<WebElement> linkTags = driver.findElements(By.xpath("//a"));
 		for (WebElement tag : linkTags) {
-			url = tag.getAttribute("href");
-			if (url == null || url.isEmpty()) {
-				HttpRequest request = new HttpRequest(HttpMethod.GET, url);
-//					HttpResponse httpResponse = request.
-//					respCode = connection.getResponseCode();
-				System.out.println(url + " : ");
-				if (respCode >= 400) {
-					System.out.print("Link is not valid");
-				} else {
-					System.out.print("Link is valid");
-				}
+			String url = tag.getAttribute("href");
+			if (url != null && !url.isEmpty()) {
+				if(RestAssured.given().get(url).statusCode()==200){
+						System.out.println("IN Valid URL : "+url);
+					}else{
+						System.out.println("Valid URL: "+url);
+					}
 			}
 		}
+
+//		linkTags.stream().map(ele->ele.getAttribute("href")).filter(link -> (!link.isEmpty() && !(link !=null))).forEach(
+//				link->{
+//					if(RestAssured.given().get(url).statusCode()==200){
+//						System.out.println("Valid URL : "+url);
+//					}else{
+//						System.out.println("Invalid URL");
+//					}
+//				}
+//		);
 	}
 
 	@AfterMethod
