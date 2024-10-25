@@ -1,6 +1,7 @@
 package WindowsAndAlerts;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.openqa.selenium.By;
@@ -11,7 +12,6 @@ public class SwitchToAWindow {
 
 	static WebDriver driver;
 	public static void main(String[] args) {
-		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		
@@ -23,14 +23,17 @@ public class SwitchToAWindow {
 		
 		String currentWindow = driver.getWindowHandle();
 		Set<String> windows = driver.getWindowHandles();
-		
-		ArrayList<String> listOfWindows = new ArrayList<String>(windows);
-		System.out.println(listOfWindows.size());
-		for(int i=0;i<listOfWindows.size();i++) {
-			driver.switchTo().window(listOfWindows.get(i));
-			System.out.println(driver.getCurrentUrl());
+
+		Iterator<String> itr = windows.iterator();
+
+		while(itr.hasNext()){
+			driver.switchTo().window(itr.next());
+			if(driver.getTitle().equals("so-so")){
+				/*
+				Your logic
+				 */
+			}
 		}
-		
 		System.out.println(closeAllOpenWindows(currentWindow));
 
 	}
