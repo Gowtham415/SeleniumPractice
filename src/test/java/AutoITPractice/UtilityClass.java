@@ -8,7 +8,7 @@ public class UtilityClass {
 	}
 	
 	
-	static void sleep(long seconds) {
+	public static void sleep(long seconds) {
 		try {
 			Thread.sleep(seconds*1000);
 		}catch(InterruptedException e) {

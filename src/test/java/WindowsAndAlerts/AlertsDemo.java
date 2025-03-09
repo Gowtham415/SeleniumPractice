@@ -24,7 +24,7 @@ public class AlertsDemo {
 
   @BeforeMethod
   public void beforeMethod() { 
-	  	System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
+
 		driver = new ChromeDriver();
 		driverWait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		action = new Actions(driver);

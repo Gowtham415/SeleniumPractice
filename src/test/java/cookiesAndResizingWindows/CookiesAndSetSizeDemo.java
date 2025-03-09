@@ -26,8 +26,7 @@ public class CookiesAndSetSizeDemo {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		System.out.println(chromeDriverPath);
-		System.setProperty("webdriver.chrome.driver", chromeDriverPath);	
+
 		// To Remove Info tab "Chrome is controlled by Automated Software "
 		ChromeOptions options = new ChromeOptions();
 		options.setExperimentalOption("useAutomationExtension", false);
@@ -58,8 +57,7 @@ public class CookiesAndSetSizeDemo {
 		Thread.sleep(2000); 
 		//js.executeScript("arguments[0].scrollIntoView();", Element);
 		
-		driver.findElement(By.xpath("//yt-formatted-string[text()='Dismiss']//ancestor::a")).click();
-		Thread.sleep(2000);
+
 	}
 
 	@AfterMethod

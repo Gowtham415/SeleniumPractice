@@ -21,8 +21,6 @@ public class FramesDemo {
 
   @BeforeMethod
   public void beforeMethod() {
-	  
-	  System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driverWait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		driver.manage().window().maximize();

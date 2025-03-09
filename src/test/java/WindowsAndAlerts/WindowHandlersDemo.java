@@ -143,7 +143,7 @@ public class WindowHandlersDemo {
 
 	@AfterMethod
 	public void afterMethod() {
-		//driver.quit();
+		driver.quit();
 	}
 
 }

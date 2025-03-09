@@ -3,6 +3,7 @@ package CheckBoxesAndDropDowns;
 import java.time.Duration;
 import java.util.List;
 
+import AutoITPractice.UtilityClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +28,6 @@ public class DropDownsDemo {
 
   @BeforeMethod
   public void setUp() {
-	  	WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		action = new Actions(driver);
@@ -39,10 +39,23 @@ public class DropDownsDemo {
   public void dropDownTestSelect() {
 	  driver.manage().deleteAllCookies();
 	  driver.get(practiceTestURl);
-	  WebElement selectElement = driver.findElement(By.id("carselect"));
-	  
-	  Select options = new Select(selectElement);
-	  options.getOptions().stream().map(x->x.getText()).distinct().sorted().forEach(System.out::println);
+	  driver.findElement(By.xpath("(//div[@id='header5']//li[@data-action='dropdown']//a)[1]")).click();
+	  driver.findElement(By.xpath("//div[@id='header5']//a[text()='Element Practice']")).click();
+	  UtilityClass.sleep(2000);
+	  String parentWindow = driver.getWindowHandle();
+	  driver.getWindowHandles().forEach(window->{
+	  	driver.switchTo().window(window);
+	  	if(driver.getTitle().contains("Practice Page")) {
+			WebElement selectElement = driver.findElement(By.id("carselect"));
+
+			Select options = new Select(selectElement);
+			options.getOptions().stream().map(x->x.getText()).distinct().sorted().forEach(System.out::println);
+			options.selectByValue("bmw");
+	  	}
+
+	  	driver.switchTo().window(parentWindow);
+	  });
+
 	  
 	  
 //	  for(WebElement e:options.getAllSelectedOptions()) {
@@ -80,6 +93,6 @@ public class DropDownsDemo {
   
   @AfterMethod
   public void tearDown() {
-	  driver.close();
+	  driver.quit();
   }
 }

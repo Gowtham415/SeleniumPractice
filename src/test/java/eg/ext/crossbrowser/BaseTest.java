@@ -27,7 +27,6 @@ public class BaseTest {
 
 	@BeforeTest
 	public void beforeTest() {
-		WebDriverManager.chromedriver().setup();
 		driver = BrowserBuilder.build(BrowserType.CHROME);
 	}
 

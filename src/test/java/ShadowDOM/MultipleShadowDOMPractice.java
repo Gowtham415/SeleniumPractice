@@ -19,7 +19,7 @@ public class MultipleShadowDOMPractice {
     public String baseURl = "https://shop.polymer-project.org/";;
     @BeforeMethod
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
+
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(baseURl);
